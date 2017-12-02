@@ -5,7 +5,7 @@ LeaseWeb Cloud API library in Golang, you can find the full API documentatoin [h
 [![Build Status](https://travis-ci.org/OpenSourceZombie/lwapi.svg?branch=master)](https://travis-ci.org/OpenSourceZombie/lwapi) [![GoDoc](https://godoc.org/github.com/spf13/cobra?status.svg)](https://godoc.org/github.com/spf13/cobra)   [![codecov](https://codecov.io/gh/OpenSourceZombie/lwapi/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenSourceZombie/lwapi)
 
 ## Install
-    go get gopkg.in/jarcoal/httpmock.v1
+    go get github.com/OpenSourceZombie/lwapi
 
 ### Simple Example:
 ```go
