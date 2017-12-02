@@ -1,2 +1,27 @@
 # lwapi
-LeaseWeb API library in Golang
+LeaseWeb Cloud API library in Golang, you can find the full API documentatoin [here](http://developer.leaseweb.com/cloudapi-docs/?shell#get-the-datatraffic-metrics)
+
+## Install
+    go get gopkg.in/jarcoal/httpmock.v1
+
+### Simple Example:
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"github.com/OpenSourceZombie/lwapi"
+)
+func main() {
+	lwclient := lwapi.LW{}
+	lwclient.AuthToken = " ****-****-****-****"
+	vServerslList, err := lwclient.GetVirtualServersList()
+	if err != nil {
+		log.Println(err)
+	}
+	for k, vServer := range vServerslList.VirtualServers {
+		fmt.Printf("%d.\t%s\t%s\n", k, vServer.Reference, vServer.Ips[0].IP)
+	}
+}
+```
