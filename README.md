@@ -1,6 +1,6 @@
 # lwapi
 LeaseWeb Cloud API library in Golang, you can find the full API documentatoin [here](http://developer.leaseweb.com/cloudapi-docs/?shell#get-the-datatraffic-metrics)
-
+[![Build Status](https://travis-ci.org/OpenSourceZombie/lwapi.svg?branch=master)](https://travis-ci.org/OpenSourceZombie/lwapi)
 ## Install
     go get gopkg.in/jarcoal/httpmock.v1
 
