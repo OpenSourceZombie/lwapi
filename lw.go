@@ -41,13 +41,13 @@ func (lw LW) GetVirtualServersList() (VirtualServerList, error) {
 	req.Header.Add("X-Lsw-Auth", lw.AuthToken)
 	body, err := lw.sendHTTPRequest(req, http.StatusOK)
 	if err != nil {
-		return vsl, errors.New("Error " + err.Error())
+		return vsl, err
 	}
 	err = json.Unmarshal(body, &vsl)
 	if err != nil {
 		log.Println(err)
 	}
-	return vsl, nil
+	return vsl, err
 
 }
 
@@ -64,7 +64,7 @@ func (lw LW) GetVirtualServer(id string) (VirtualServer, error) {
 	if err != nil {
 		log.Println(err)
 	}
-	return vs, nil
+	return vs, err
 }
 
 //UpdateServerReference Update the current server reference
@@ -81,7 +81,7 @@ func (lw LW) UpdateServerReference(id, reference string) (VirtualServer, error) 
 	if err != nil {
 		log.Println(err)
 	}
-	return vs, nil
+	return vs, err
 }
 
 //PowerControl PowerOn, PowerOff or reboot a virtual server, powerOn = 0, powerOff =1, reboot=2
@@ -111,7 +111,7 @@ func (lw LW) PowerControl(id string, powerState int) (AsyncResponse, error) {
 	if err != nil {
 		return asyncResp, errors.New("Error " + err.Error())
 	}
-	return asyncResp, nil
+	return asyncResp, err
 }
 
 //ReinstallVirtualServer reinstall a virtual serven providing it's virtual server's id
@@ -129,7 +129,7 @@ func (lw LW) ReinstallVirtualServer(id string) (AsyncResponse, error) {
 	if err != nil {
 		log.Println(err)
 	}
-	return asyncResp, nil
+	return asyncResp, err
 }
 
 //GetCredentialsList Get all the credentials related to a user or a virtualserver
@@ -155,7 +155,7 @@ func (lw LW) GetCredentialsList(id string, credentialType int) (CredentialsList,
 	if err != nil {
 		log.Println(err)
 	}
-	return credslist, nil
+	return credslist, err
 }
 
 //GetCredentials Get a single user credentials
@@ -166,10 +166,10 @@ func (lw LW) GetCredentials(id string, credentialType int, username string) (Cre
 	}
 	for _, creds := range credslist.Credentials {
 		if creds.Username == username {
-			return creds, nil
+			return creds, err
 		}
 	}
-	return Credentials{}, nil
+	return Credentials{}, err
 }
 
 //GetTrafficDataMetrics Retrieve a list of all of your datatraffic metrics,
@@ -195,7 +195,7 @@ func (lw LW) GetTrafficDataMetrics(id, aggregation, from, to string) (Metrics, e
 	if err != nil {
 		log.Println(err)
 	}
-	return metrics, nil
+	return metrics, err
 }
 func (lw LW) sendHTTPRequest(req *http.Request, ExpectedHTTPStatus int) ([]byte, error) {
 	resp, err := lw.httpclient.Do(req)
@@ -206,5 +206,5 @@ func (lw LW) sendHTTPRequest(req *http.Request, ExpectedHTTPStatus int) ([]byte,
 		return []byte(""), errors.New("Something went wrong: " + resp.Status)
 	}
 	body, err := ioutil.ReadAll(resp.Body)
-	return body, nil
+	return body, err
 }
