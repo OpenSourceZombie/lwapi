@@ -99,7 +99,7 @@ func (lw LW) PowerControl(id string, powerState int) (AsyncResponse, error) {
 	case 2:
 		state = "reboot"
 	default:
-		return asyncResp, errors.New("Invalid Power State")
+		return asyncResp, errors.New("invalid Power State")
 	}
 	req, _ := http.NewRequest("POST", fmt.Sprintf("%s/%s/%s", virtualServersAPI, id, state), nil)
 	req.Header.Add("X-Lsw-Auth", lw.AuthToken)
@@ -178,7 +178,7 @@ func (lw LW) GetTrafficDataMetrics(id, aggregation, from, to string) (Metrics, e
 	rawurl := fmt.Sprintf("%s/%s/metrics/datatraffic", virtualServersAPI, id)
 	url, err := url.Parse(rawurl)
 	if err != nil {
-		log.Println(err)
+		return metrics, err
 	}
 	q := url.Query()
 	q.Set("from", from)
