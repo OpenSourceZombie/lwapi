@@ -200,7 +200,7 @@ func (lw LW) GetTrafficDataMetrics(id, aggregation, from, to string) (Metrics, e
 func (lw LW) sendHTTPRequest(req *http.Request, ExpectedHTTPStatus int) ([]byte, error) {
 	resp, err := lw.httpclient.Do(req)
 	if err != nil {
-		log.Println(err)
+		log.Fatalln(err)
 	}
 	if resp.StatusCode != ExpectedHTTPStatus {
 		return []byte(""), errors.New("Something went wrong: " + resp.Status)
