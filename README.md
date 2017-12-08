@@ -18,7 +18,9 @@ import (
 )
 func main() {
 	lwclient := lwapi.LW{}
-	lwclient.AuthToken = " ****-****-****-****"
+	    lwclient := lwapi.LW{
+        AuthToken: "****-****-****-****",
+    }
 	vServerslList, err := lwclient.GetVirtualServersList()
 	if err != nil {
 		log.Println(err)
