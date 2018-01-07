@@ -32,7 +32,7 @@ type VirtualServer struct {
 	Ips []struct {
 		IP      string `json:"ip"`
 		Type    string `json:"type"`
-		Version string `json:"version"`
+		Version int    `json:"version"`
 	} `json:"ips"`
 	Iso struct {
 		DisplayName string `json:"displayName"`
