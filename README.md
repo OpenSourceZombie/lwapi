@@ -17,7 +17,6 @@ import (
 	"github.com/OpenSourceZombie/lwapi"
 )
 func main() {
-	lwclient := lwapi.LW{}
 	    lwclient := lwapi.LW{
         AuthToken: "****-****-****-****",
     }
